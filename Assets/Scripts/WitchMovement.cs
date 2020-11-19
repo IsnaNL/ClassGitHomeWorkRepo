@@ -13,22 +13,14 @@ public class WitchMovement : MonoBehaviour
     public float FillRate;
     public float HorMovementSpeed;
     public LayerMask GroundLayerMask;
+    public float groundCheckDistance;
 
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!Isgrounded())
         {
             Velocity.y -= gravity * Time.deltaTime;
-
         }
         HorInput = Input.GetAxis("Horizontal");
         if (HorInput != 0)
@@ -42,8 +34,6 @@ public class WitchMovement : MonoBehaviour
                 Fuel -= FuelUsage * Time.deltaTime;
                 Velocity.y += LiftForce * Time.deltaTime;
             }
-           
-
         }
         else
         {
@@ -55,15 +45,12 @@ public class WitchMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
-        
-       
         transform.Translate(Velocity * Time.fixedDeltaTime);
     }
     public bool Isgrounded()
     {
-        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 2, GroundLayerMask);
-        Debug.DrawRay(transform.position, Vector2.down * 2, Color.red);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, GroundLayerMask);
+        Debug.DrawRay(transform.position, Vector2.down * groundCheckDistance, Color.red);
         if (hitGround)
         {
             Velocity *= 0.5f;
