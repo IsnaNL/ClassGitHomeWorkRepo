@@ -1320,6 +1320,36 @@ PrefabInstance:
       propertyPath: groundCheckDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5977902515943758558, guid: e10f8eaf08ac9f947ba66ec9794dbbd6,
+        type: 3}
+      propertyPath: fuelUsage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977902515943758558, guid: e10f8eaf08ac9f947ba66ec9794dbbd6,
+        type: 3}
+      propertyPath: liftForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977902515943758558, guid: e10f8eaf08ac9f947ba66ec9794dbbd6,
+        type: 3}
+      propertyPath: MaxVelocity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977902515943758558, guid: e10f8eaf08ac9f947ba66ec9794dbbd6,
+        type: 3}
+      propertyPath: fillRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977902515943758558, guid: e10f8eaf08ac9f947ba66ec9794dbbd6,
+        type: 3}
+      propertyPath: horMovementSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977902515943758558, guid: e10f8eaf08ac9f947ba66ec9794dbbd6,
+        type: 3}
+      propertyPath: groundLayerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e10f8eaf08ac9f947ba66ec9794dbbd6, type: 3}
 --- !u!1 &991333920
