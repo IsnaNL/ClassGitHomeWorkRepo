@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class SceneManager : MonoBehaviour
+public class LoadManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -40,7 +39,10 @@ public class SceneManager : MonoBehaviour
         {
             CreditsMenu.gameObject.SetActive(false);
         }
-        HUD.gameObject.SetActive(true);
+        if (HUD != null)
+        {
+            HUD.gameObject.SetActive(true);
+        }
 
     }
     public void PauseScene()
@@ -53,7 +55,10 @@ public class SceneManager : MonoBehaviour
         {
             CreditsMenu.gameObject.SetActive(false);
         }
-        PauseMenu.gameObject.SetActive(true);
+        if (PauseMenu != null)
+        {
+            PauseMenu.gameObject.SetActive(true);
+        }
         if (IsPlaying)
         {
             Time.timeScale = 0f;
@@ -69,13 +74,14 @@ public class SceneManager : MonoBehaviour
         {
             HUD.gameObject.SetActive(false);
         }
-        CreditsMenu.gameObject.SetActive(true);
+        if (CreditsMenu != null)
+        {
+            CreditsMenu.gameObject.SetActive(true);
+        }
     }
     public void QuitGame()
     {
-
         //splitting isPlaying to settle conflicts between editor and application
-
         if (UnityEditor.EditorApplication.isPlaying)
         {
             UnityEditor.EditorApplication.isPlaying = false;
