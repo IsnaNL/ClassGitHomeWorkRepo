@@ -9,6 +9,7 @@ public class collected : MonoBehaviour
         GetComponent<Animator>().enabled=true;
         GameManager.score++;
         Destroy(gameObject, 0.5f);
+      
     }
    
 }

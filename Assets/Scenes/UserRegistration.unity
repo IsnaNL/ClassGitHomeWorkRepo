@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58fa31938498e149aebbadb9faf9dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 832006040}
+  GUI: {fileID: 832006040}
   SaveButt: {fileID: 1857426816}
 --- !u!1 &602782704
 GameObject:
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20.85
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 22.1
+  m_fontSize: 96.25
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -902,7 +902,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 22.1
+  m_fontSize: 96.25
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1353,7 +1353,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 192384859}
-        m_MethodName: LoadLevelAndSaveNameIntoJSON
+        m_MethodName: SaveNameIntoJSON
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

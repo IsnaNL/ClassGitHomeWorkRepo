@@ -4,8 +4,8 @@ using TMPro;
 using UnityEngine.UI;
 public class UserAuthentication : MonoBehaviour
 {
-    private string UserName;
-    public TextMeshProUGUI text;
+    public static string UserName;
+    public TextMeshProUGUI GUI;
     public Button SaveButt;
     private bool IsValid;
     private void Awake()
@@ -15,17 +15,22 @@ public class UserAuthentication : MonoBehaviour
 
     private void Update()
     {
-        UserName = text.text;
+        UserName = GUI.text;
         IsValid = UserName.Length > 3;
         SaveButt.interactable = IsValid;
     }
 
-    public void LoadLevelAndSaveNameIntoJSON()
+    public void  SaveNameIntoJSON()
     {
-        UserName = text.text;
-        Debug.Log("loading next scene");
-        int _nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        UserName = GUI.text;
+        
+        //Debug.Log( PlayerData.playerName);
+        LoadNextScene();
+    }
 
+    private static void LoadNextScene()
+    {
+        int _nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(_nextScene);
     }
 }
