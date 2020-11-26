@@ -15,6 +15,7 @@ public class WitchMovement : MonoBehaviour
     public float horMovementSpeed;
     public LayerMask groundLayerMask;
     public float groundCheckDistance;
+    public SpriteRenderer spriteRenderer;
 
 
     void Update()
@@ -44,6 +45,19 @@ public class WitchMovement : MonoBehaviour
             {
                 Fuel += fillRate * Time.deltaTime;
             }
+        }
+        flip();
+    }
+    void flip()
+    {
+        if(HorInput < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (HorInput > 0)
+        {
+            spriteRenderer.flipX = false;
+
         }
     }
     private void FixedUpdate()
