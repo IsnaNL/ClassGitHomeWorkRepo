@@ -8,8 +8,10 @@ public class LoseCondition : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        LoadLastScene();
+        if(collision.gameObject.layer != 8)
+        {
+            LoadLastScene();
+        }
     }
     private void LoadLastScene()
     {

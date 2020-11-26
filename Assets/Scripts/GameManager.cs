@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public Transform catHanlder;
     [SerializeField]
     private PlayerData _PlayerData = new PlayerData();
-    private float timeFromStart;
+    public float timeFromStart;
     public static int timeFromStartInt;
     public float maxTime;
 
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timeFromStart = 0;
+        timeFromStartInt = 0;
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         if(timeFromStart >= maxTime)
         {
-            SceneManager.LoadScene(0);
+           SceneManager.LoadScene(0);
         }
     }
 
@@ -59,8 +60,8 @@ public class GameManager : MonoBehaviour
     
     private void WinGame()
     {
+        SaveIntoJson();
         SceneManager.LoadScene(0);
-         SaveIntoJson();
     }
     public void SaveIntoJson()
     {

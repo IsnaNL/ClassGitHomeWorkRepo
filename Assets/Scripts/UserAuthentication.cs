@@ -24,8 +24,8 @@ public class UserAuthentication : MonoBehaviour
     {
         UserName = GUI.text;
         
-        //Debug.Log( PlayerData.playerName);
         LoadNextScene();
+        //Debug.Log( PlayerData.playerName);
     }
 
     private static void LoadNextScene()
