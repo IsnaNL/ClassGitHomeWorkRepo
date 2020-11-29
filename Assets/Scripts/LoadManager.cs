@@ -1,20 +1,27 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadManager : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    [Header("Menus")]
     public GameObject PauseMenu;
     public GameObject HUD;
     public GameObject CreditsMenu;
+    [Header("Effects")]
+    public ParticleSystem Confetti;
+
+    private List<GameObject> Screens;
 
     public static bool IsPlaying { get => UnityEditor.EditorApplication.isPlaying || Application.isPlaying; }
     private void Awake()
     {
-        if (PauseMenu == null || HUD == null || CreditsMenu == null)
+        Screens = new List<GameObject>
         {
-            Debug.LogError("some or all menus aren't connect to the SceneManager script in 'UI' Canvas");
-        }
+            PauseMenu,
+            HUD,
+            CreditsMenu
+        };
     }
 
     void Start()
@@ -31,53 +38,37 @@ public class LoadManager : MonoBehaviour
     public void ResumeScene()
     {
         Time.timeScale = 1f;
-        if (PauseMenu != null)
-        {
-            PauseMenu.gameObject.SetActive(false);
-        }
-        if (CreditsMenu != null)
-        {
-            CreditsMenu.gameObject.SetActive(false);
-        }
-        if (HUD != null)
-        {
-            HUD.gameObject.SetActive(true);
-        }
+        SelectScreen(HUD);
 
     }
     public void PauseScene()
     {
-        if (HUD != null)
-        {
-            HUD.gameObject.SetActive(false);
-        }
-        if (CreditsMenu != null)
-        {
-            CreditsMenu.gameObject.SetActive(false);
-        }
-        if (PauseMenu != null)
-        {
-            PauseMenu.gameObject.SetActive(true);
-        }
-        if (IsPlaying)
-        {
-            Time.timeScale = 0f;
-        }
+        SelectScreen(PauseMenu);
+        Time.timeScale = 0f;
     }
     public void CreditsScene()
     {
-        if (PauseMenu != null)
+        SelectScreen(CreditsMenu);
+    }
+    private void SelectScreen(GameObject SelectedScreen)
+    {
+        foreach (GameObject item in Screens)
         {
-            PauseMenu.gameObject.SetActive(false);
+            if (item != null)
+            {
+                item.SetActive(false);
+            }
+            else
+            {
+                Debug.LogError(item.name + " screen is nullified");
+            }
         }
-        if (HUD != null)
-        {
-            HUD.gameObject.SetActive(false);
-        }
-        if (CreditsMenu != null)
-        {
-            CreditsMenu.gameObject.SetActive(true);
-        }
+        SelectedScreen.SetActive(true);
+        
+    }
+    public void Confett()
+    {
+        Confetti.Play();
     }
     public void QuitGame()
     {
