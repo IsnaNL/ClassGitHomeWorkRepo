@@ -19,10 +19,13 @@ public class GameManager : MonoBehaviour
     public float timeFromStart;
     public static int timeFromStartInt;
     public float maxTime;
+    public static bool hasWon;
+    public static int HighScore;
 
     // Start is called before the first frame update
     void Start()
     {
+        GetHighScore();
         timeFromStart = 0;
         timeFromStartInt = 0;
     }
@@ -60,6 +63,8 @@ public class GameManager : MonoBehaviour
     
     private void WinGame()
     {
+        hasWon = true;
+        GetHighScore();
         SaveIntoJson();
         SceneManager.LoadScene(0);
     }
@@ -69,6 +74,21 @@ public class GameManager : MonoBehaviour
         Debug.Log(Application.persistentDataPath);
         string data = JsonUtility.ToJson(_PlayerData);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/_PlayerData.json", data);
+        if (score > HighScore)
+        {
+            HighScore = score;
+            _PlayerData.highScore = HighScore;
+        }
     }
+
+    public void GetHighScore()
+    {
+        PlayerData _pd;
+        string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/_PlayerData.json");
+        _pd = JsonUtility.FromJson<PlayerData>(data);
+        HighScore = _pd.highScore;
+        
+    }
+
 }
 
