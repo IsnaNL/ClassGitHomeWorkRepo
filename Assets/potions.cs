@@ -22,7 +22,7 @@ public class potions : MonoBehaviour
         }
         if (collision.CompareTag("Food"))
         {
-            Food();
+           StartCoroutine (Food());
 
         }
         if (collision.CompareTag("Speed"))
@@ -33,7 +33,7 @@ public class potions : MonoBehaviour
 
     }
 
-    public void Food()
+    public IEnumerator Food()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, Food_Radios);
 
@@ -41,20 +41,27 @@ public class potions : MonoBehaviour
         {
             if (hit.CompareTag("cat"))
             {
-              LeanTween.move(hit.gameObject, transform.position, 0.5f);
+              LeanTween.move(hit.gameObject, transform.position, 1f);
             }
         }
-
+        yield return new WaitForSeconds(1f);
+        foreach (Collider2D hit in colliders)
+        {
+            if (hit.CompareTag("cat"))
+            {
+                LeanTween.move(hit.gameObject, transform.position, 1f);
+            }
+        }
     }
 
     public IEnumerator Speed_change()
     {
 
-        GetComponent<WitchMovement>().horMovementSpeed *= 5f;
-        GetComponent<WitchMovement>().liftForce *= 5f;
+        GetComponent<WitchMovement>().horMovementSpeed *= 100f;
+        GetComponent<WitchMovement>().liftForce *= 10f;
         yield return new WaitForSeconds(Speed_time);
-        GetComponent<WitchMovement>().horMovementSpeed /= 5f;
-        GetComponent<WitchMovement>().liftForce /= 5f;
+        GetComponent<WitchMovement>().horMovementSpeed /= 100f;
+        GetComponent<WitchMovement>().liftForce /= 10f;
     }
 
 }

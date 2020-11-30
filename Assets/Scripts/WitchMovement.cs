@@ -50,15 +50,17 @@ public class WitchMovement : MonoBehaviour
     }
     void flip()
     {
-        if(HorInput < 0)
+        if (HorInput < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector2( -1, transform.localScale.y);
         }
-        else if (HorInput > 0)
+        else
         {
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector2(1, transform.localScale.y);
 
         }
+
+
     }
     private void FixedUpdate()
     {
