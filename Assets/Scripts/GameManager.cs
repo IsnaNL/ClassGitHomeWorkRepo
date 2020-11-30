@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static int score;
     public TextMeshProUGUI score_text;
     public TextMeshProUGUI time_text;
+    public TextMeshProUGUI hs_text;
+
     public WitchMovement PlayerRef;
     public Slider FuelSliderRef;
     public int catsLeft;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GetHighScore();
+        hs_text.text = "High Score: " + HighScore;
         timeFromStart = 0;
         timeFromStartInt = 0;
     }
@@ -64,29 +67,35 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
         hasWon = true;
-        GetHighScore();
         SaveIntoJson();
         SceneManager.LoadScene(2);
     }
     public void SaveIntoJson()
     {
+        if (timeFromStartInt < HighScore)
+        {
+            HighScore = timeFromStartInt;
+            _PlayerData.highScore = HighScore;
+        }
         _PlayerData.playerName = UserAuthentication.UserName;
         Debug.Log(Application.persistentDataPath);
         string data = JsonUtility.ToJson(_PlayerData);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/_PlayerData.json", data);
-        if (score > HighScore)
-        {
-            HighScore = score;
-            _PlayerData.highScore = HighScore;
-        }
     }
 
     public void GetHighScore()
     {
-        PlayerData _pd;
-        string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/_PlayerData.json");
-        _pd = JsonUtility.FromJson<PlayerData>(data);
-        HighScore = _pd.highScore;
+        if (System.IO.File.Exists(Application.persistentDataPath + "/_PlayerData.json"))
+        {
+            PlayerData _pd;
+            string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/_PlayerData.json");
+            _pd = JsonUtility.FromJson<PlayerData>(data);
+            HighScore = _pd.highScore;
+        }
+        else
+        {
+            HighScore = 120;
+        }
     }
 
 }
