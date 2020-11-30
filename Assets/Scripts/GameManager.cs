@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         hasWon = true;
         GetHighScore();
         SaveIntoJson();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
     public void SaveIntoJson()
     {
@@ -87,7 +87,6 @@ public class GameManager : MonoBehaviour
         string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/_PlayerData.json");
         _pd = JsonUtility.FromJson<PlayerData>(data);
         HighScore = _pd.highScore;
-        
     }
 
 }

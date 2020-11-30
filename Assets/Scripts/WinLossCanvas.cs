@@ -9,8 +9,6 @@ public class WinLossCanvas : MonoBehaviour
 { 
     public ParticleSystem Confetti;
     public TextMeshProUGUI FinishText;
-    //private PlayerData _playerData = new PlayerData();
-    private bool hasWon;
     void Start()
     {
         if (GameManager.hasWon)
@@ -21,13 +19,6 @@ public class WinLossCanvas : MonoBehaviour
         }
         //lose
         FinishText.text = "You're terrible and should feel bad";
-
-
-    }
-
-    void Update()
-    {
-
     }
     public void Confett()
     {
