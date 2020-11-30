@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class LoadManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -8,8 +7,6 @@ public class LoadManager : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject HUD;
     public GameObject CreditsMenu;
-    [Header("Effects")]
-    public ParticleSystem Confetti;
 
     private List<GameObject> Screens;
 
@@ -65,10 +62,6 @@ public class LoadManager : MonoBehaviour
         }
         SelectedScreen.SetActive(true);
         
-    }
-    public void Confett()
-    {
-        Confetti.Play();
     }
     public void QuitGame()
     {

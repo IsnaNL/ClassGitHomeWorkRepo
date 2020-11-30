@@ -16,7 +16,7 @@ public class UserAuthentication : MonoBehaviour
     private void Update()
     {
         UserName = GUI.text;
-        IsValid = UserName.Length > 3;
+        IsValid = UserName.Length > 3 && UserName.Length < 12;
         SaveButt.interactable = IsValid;
     }
 
